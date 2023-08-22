@@ -1,47 +1,61 @@
 import java.util.ArrayList;
 
+//A classe Stack é uma classe genérica que implementa uma pilha. Ela é parametrizada com o tipo T,
+// que representa o tipo de elementos que serão armazenados na pilha.
 public class Stack<T> {
-    // vamos ter q usar generics
-    // pq tem uma base se é a stack
-    // vai ter q implementar um array generico na mao
-    ArrayList<T> array;
-    private int top = -1;
+    //é um objeto do tipo ArrayList<T> que será usado para armazenar os elementos da pilha.
+    private ArrayList<T> stack;
+
+    //é um inteiro que representa o índice do elemento no topo da pilha.
+    private int top;
+
+    // é um inteiro que representa o tamanho máximo da pilha.
     private int size;
-    private T[] stack;
 
-
+    //O construtor da classe Stack recebe como parâmetro o tamanho da pilha e inicializa os atributos size,
+    // top e stack. Ele cria um novo objeto ArrayList<T> com o tamanho especificado.
     public Stack(int size) {
         this.size = size;
         this.top = -1;
-        this.stack = new T [size];
+        this.stack = new ArrayList<T>(size);
     }
 
+    // verifica se o o topo da pilha é igual ao tamanhao - 1 da pilha, retornando true, caso contrário retorna false
     public boolean isFull() {
-        return stack[size-1] != null;
+        return top == size - 1;
     }
 
-    public boolean isEmpty() { return top == -1;}
+    //verifica se a pilha está vazia, retornando true caso top seja = -1, do contrário retorna false
+    public boolean isEmpty() {
+        return top == -1;
+    }
 
+    //o métoto pop() verifica se a lista está vazia, mostrando uma mensagem no console caso true, do contrário, ele usa o método remove()
+    //nativo do ArrayList para remover o item na posição correspondente do topo e também diminui em 1 o valor de top
     public void pop() {
-        if(isEmpty()) {
-            System.out.println("Stack vazia, não é possível remover itens");
-        }
-        else{
-            top --;
+        if (isEmpty()) {
+            System.out.println("A pilha está vazia, não é possível remover itens.");
+        } else {
+            stack.remove(top);
+            top--;
         }
     }
 
-    public void push(T valor){
-        if(top == (stack.length - 1)){
-            throw new RuntimeException("Stack está cheio!");
+    // o método push() adiciona um valor(parâmetro) à pilha através so método .add() nativo do ArrayList, caso a pilha esteja cheia ele mostra uma mensagem no console
+    public void push(T valor) {
+        if (isFull()) {
+            System.out.println("A pilha está cheia!");
         }
         top++;
-        stack[top] = valor;
+        stack.add(top, valor);
     }
 
-    public void clear(){
-        for (T item : this.array) {
-            this.pop();
-        }
+    // por fim o método clear() apenas remove todos os itens da pila através do método .clear() nativo do ArraList e
+    //altera o valor de top = -1
+    public void clear() {
+        stack.clear();
+        top = -1;
     }
+
+    // Com a implementação da pilha basta brincar na classe main, instanciando e utilizando os métodos criados aqui.
 }
