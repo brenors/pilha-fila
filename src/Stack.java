@@ -12,7 +12,7 @@ public class Stack<T> {
     // é um inteiro que representa o tamanho máximo da pilha.
     private int size;
 
-    //O construtor da classe Stack recebe como parâmetro o tamanho da pilha e inicializa os atributos size,
+    // o método construtor recebe como parâmetro o tamanho da pilha e inicializa os atributos size,
     // top e stack. Ele cria um novo objeto ArrayList<T> com o tamanho especificado.
     public Stack(int size) {
         this.size = size;
