@@ -56,7 +56,9 @@ public class Queue<T> {
         if (end == 0) {
             front = -1;
             end = -1;
-        } else {end--;}
+        } else {
+            end--;
+        }
         return value;
     }
 
