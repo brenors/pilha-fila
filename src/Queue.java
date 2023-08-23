@@ -42,22 +42,22 @@ public class Queue<T> {
     }
 
     /* o método dequeue() é usado para remover o item do início da fila. Ele verifica se a fila está vazia e
-     exibe uma mensagem no console caso esteja. Caso contrário, o item é removido do ArrayList na posição correspondente ao front.
-     Se o front for igual ao end, significa que a fila está vazia após a remoção, então as posições front e end são redefinidos como -1.
-     Caso contrário, o front é incrementado em + 1.
+     exibe uma mensagem no console caso esteja. Caso contrário, o item é removido do ArrayList na posição correspondente ao front
+     e tambem é salvo na variavel value para ser retornado.
+     Se o end for igual a 0, significa que a fila está vazia após a remoção, então as posições front e end são redefinidos como -1.
+     Caso contrário, o end é decrementado em - 1.
      */
-    public void dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             System.out.println("A fila está vazia, não é possível remover itens.");
-        } else {
-            queue.remove(front);
-            if (front == end) {
-                front = -1;
-                end = -1;
-            } else {
-                front++;
-            }
+            return null;
         }
+        T value = queue.remove(front);
+        if (end == 0) {
+            front = -1;
+            end = -1;
+        } else {end--;}
+        return value;
     }
 
     // o método clear() apenas limpa a fila, utilziando o método clear() nativo do ArrayList e redefinindo as posições front e end = -1

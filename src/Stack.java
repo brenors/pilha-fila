@@ -24,15 +24,17 @@ public class Stack<T> {
     }
 
     /*o métoto pop() verifica se a lista está vazia, mostrando uma mensagem no console caso true, do contrário, ele usa o método remove()
-    nativo do ArrayList para remover o item na posição correspondente do topo e também diminui em 1 o valor de top
+    nativo do ArrayList para remover o item na posição correspondente do topo e salvar na variavel value para ser retornado.
+    E também o valor de top diminui em 1.
      */
-    public void pop() {
+    public T pop() {
         if (isEmpty()) {
             System.out.println("A pilha está vazia, não é possível remover itens.");
-        } else {
-            stack.remove(top);
-            top--;
+            return null;
         }
+        T value = stack.remove(top);
+        top--;
+        return value;
     }
 
 
